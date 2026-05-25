@@ -261,7 +261,7 @@ export function ToolsCard({ tools }: { tools: Tool[] }) {
   }, [])
 
   // Инструменты для исключения
-  const excludedTools = ["Velocity", "Xeno", "Solara", "Maduum", "Opiumware", "Delta", "Codex", "Vega X", "Cryptic"]
+  const excludedTools = ["Velocity", "Xeno", "Solara", "Maduum", "Madium", "Opiumware", "Delta", "Codex", "Vega X", "Cryptic"]
 
   // Фиксированный порядок инструментов (не меняется от статуса)
   const fixedOrder = ["Volt", "Wave", "Seliware", "Potassium", "Synapse Z", "SirHurt"]
