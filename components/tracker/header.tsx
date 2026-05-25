@@ -1,5 +1,7 @@
 "use client"
 
+import Image from "next/image"
+
 export function StatusDot({ status }: { status: "ok" | "warn" | "bad" | "loading" | "error" }) {
   const colors = {
     ok: "bg-[#35ffb0]",
@@ -22,16 +24,18 @@ export function Header({ status }: { status: "ok" | "warn" | "bad" | "loading" |
       style={{ animationDelay: "0.1s" }}
     >
       <div className="flex items-center gap-3.5">
-        {/* R Badge */}
-        <div className="relative w-12 h-12 rounded-2xl flex items-center justify-center border border-[rgba(77,184,232,0.30)] overflow-hidden flex-shrink-0"
+        {/* Logo image */}
+        <div className="relative w-12 h-12 rounded-2xl overflow-hidden flex-shrink-0 border border-[rgba(77,184,232,0.30)]"
           style={{
-            background: "linear-gradient(135deg, rgba(77,184,232,0.22), rgba(77,184,232,0.12))",
-            boxShadow: "0 0 24px rgba(77,184,232,0.18), inset 0 0 12px rgba(77,184,232,0.08)",
+            boxShadow: "0 0 24px rgba(77,184,232,0.18)",
           }}
         >
-          <span className="text-xl font-[950] text-[rgba(77,184,232,0.95)]">R</span>
-          <div className="absolute inset-0 animate-[shimmer_3s_ease-in-out_infinite]"
-            style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }}
+          <Image
+            src="/logo.png"
+            alt="Roesploits logo"
+            fill
+            className="object-cover"
+            priority
           />
         </div>
 
