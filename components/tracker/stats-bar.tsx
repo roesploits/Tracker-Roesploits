@@ -50,7 +50,7 @@ export function StatsBar({ tools }: { tools: Tool[] }) {
     >
       <div className="relative z-[1] p-4">
         {/* 4 stat counters */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-3 gap-4">
           {stats.map((s) => (
             <div key={s.label} className="flex flex-col items-center gap-1 py-2">
               <AnimatedNumber value={s.value} color={s.color} />
