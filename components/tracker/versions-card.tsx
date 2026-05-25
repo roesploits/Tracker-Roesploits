@@ -169,7 +169,7 @@ export function VersionsCard({ versions }: { versions: VersionData }) {
 
   return (
     <>
-      <div className="glass-card-hover animate-[fade-in-up_0.6s_ease-out_both]" style={{ animationDelay: "0.4s", background: "linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025))", backdropFilter: "blur(16px)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "20px", boxShadow: "0 24px 80px rgba(0,0,0,0.5)", position: "relative", overflow: "visible" }}>
+      <div className="glass-card glass-card-hover versions-card-overflow animate-[fade-in-up_0.6s_ease-out_both]" style={{ animationDelay: "0.4s", overflow: "visible" }}>
         <div style={{ position: "relative", zIndex: 1, overflow: "visible" }}>
           <div className="flex items-center gap-2.5 px-5 pt-4 pb-3 border-b border-[rgba(77,184,232,0.08)]">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(77,184,232,0.8)" strokeWidth="1.5">
