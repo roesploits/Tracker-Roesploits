@@ -34,11 +34,12 @@ function PlatformIcon({ name }: { name: string }) {
       ),
     },
     Mac: {
-      bg: "rgba(224,236,255,0.08)",
-      border: "rgba(224,236,255,0.16)",
+      bg: "rgba(224,236,255,0.10)",
+      border: "rgba(224,236,255,0.20)",
       icon: (
-        <svg width="14" height="16" viewBox="0 0 14 17" fill="rgba(224,236,255,0.85)">
-          <path d="M13.2 13.1c-.3.7-.7 1.3-1.1 1.8-.6.8-1.1 1.3-1.5 1.3-.3 0-.7-.1-1.2-.3-.5-.2-1-.3-1.4-.3-.5 0-.9.1-1.4.3-.5.2-.9.3-1.2.3-.5 0-1-.6-1.6-1.4C2.9 13.6 2.2 12 1.7 10.5c-.5-1.3-.8-2.6-.8-3.8 0-1.4.3-2.6 1-3.5.5-.7 1.2-1.2 2-1.6.8-.4 1.6-.6 2.4-.6.4 0 1 .1 1.6.3.6.2 1 .3 1.2.3.2 0 .6-.1 1.3-.4.6-.2 1.2-.3 1.6-.3 1.2.1 2.1.5 2.7 1.4-1.1.6-1.6 1.5-1.6 2.7 0 .9.3 1.7.9 2.3.5.5 1 .7 1.5.8-.1.4-.3.8-.5 1.2zM9.7.3c0 .7-.3 1.4-.8 2-.6.7-1.3 1.1-2.2 1-.0-.1-.0-.2-.0-.3 0-.7.3-1.4.8-2 .3-.3.6-.5 1-.7.4-.2.8-.3 1.2-.3v.3z" />
+        // Apple logo — correct proportional SVG
+        <svg width="15" height="18" viewBox="0 0 15 18" fill="rgba(224,236,255,0.90)">
+          <path d="M12.42 9.56c-.02-1.96 1.6-2.9 1.67-2.95-1.28-1.88-2.74-1.96-2.78-1.97-1.18-.12-2.3.7-2.9.7-.6 0-1.52-.69-2.5-.67C4.5 4.7 3.1 5.6 2.33 7.0 .76 9.84 1.9 14.0 3.42 16.3c.76 1.1 1.66 2.33 2.85 2.28 1.14-.05 1.57-.74 2.95-.74 1.37 0 1.76.74 2.96.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.19zM10.37 3.2C11 2.42 11.43 1.35 11.3.26c-.92.04-2.04.62-2.7 1.39-.59.68-1.11 1.77-.97 2.81.97.08 1.97-.5 2.74-1.26z"/>
         </svg>
       ),
     },
@@ -55,8 +56,8 @@ function PlatformIcon({ name }: { name: string }) {
       bg: "rgba(47,125,255,0.12)",
       border: "rgba(47,125,255,0.20)",
       icon: (
-        <svg width="14" height="16" viewBox="0 0 14 17" fill="rgba(47,125,255,0.9)">
-          <path d="M13.2 13.1c-.3.7-.7 1.3-1.1 1.8-.6.8-1.1 1.3-1.5 1.3-.3 0-.7-.1-1.2-.3-.5-.2-1-.3-1.4-.3-.5 0-.9.1-1.4.3-.5.2-.9.3-1.2.3-.5 0-1-.6-1.6-1.4C2.9 13.6 2.2 12 1.7 10.5c-.5-1.3-.8-2.6-.8-3.8 0-1.4.3-2.6 1-3.5.5-.7 1.2-1.2 2-1.6.8-.4 1.6-.6 2.4-.6.4 0 1 .1 1.6.3.6.2 1 .3 1.2.3.2 0 .6-.1 1.3-.4.6-.2 1.2-.3 1.6-.3 1.2.1 2.1.5 2.7 1.4-1.1.6-1.6 1.5-1.6 2.7 0 .9.3 1.7.9 2.3.5.5 1 .7 1.5.8-.1.4-.3.8-.5 1.2zM9.7.3c0 .7-.3 1.4-.8 2-.6.7-1.3 1.1-2.2 1-.0-.1-.0-.2-.0-.3 0-.7.3-1.4.8-2 .3-.3.6-.5 1-.7.4-.2.8-.3 1.2-.3v.3z" />
+        <svg width="15" height="18" viewBox="0 0 15 18" fill="rgba(47,125,255,0.9)">
+          <path d="M12.42 9.56c-.02-1.96 1.6-2.9 1.67-2.95-1.28-1.88-2.74-1.96-2.78-1.97-1.18-.12-2.3.7-2.9.7-.6 0-1.52-.69-2.5-.67C4.5 4.7 3.1 5.6 2.33 7.0 .76 9.84 1.9 14.0 3.42 16.3c.76 1.1 1.66 2.33 2.85 2.28 1.14-.05 1.57-.74 2.95-.74 1.37 0 1.76.74 2.96.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.19zM10.37 3.2C11 2.42 11.43 1.35 11.3.26c-.92.04-2.04.62-2.7 1.39-.59.68-1.11 1.77-.97 2.81.97.08 1.97-.5 2.74-1.26z"/>
         </svg>
       ),
     },
@@ -65,7 +66,7 @@ function PlatformIcon({ name }: { name: string }) {
   const i = iconMap[name] || { bg: "rgba(255,255,255,0.06)", border: "rgba(255,255,255,0.10)", icon: null }
   return (
     <div
-      className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+      className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
       style={{ background: i.bg, border: `1px solid ${i.border}` }}
     >
       {i.icon}
@@ -73,16 +74,16 @@ function PlatformIcon({ name }: { name: string }) {
   )
 }
 
-function VersionDropdown({ 
-  version, 
-  platform, 
-  onCopy, 
-  onClose 
-}: { 
+function VersionDropdown({
+  version,
+  platform,
+  onCopy,
+  onClose
+}: {
   version: string
   platform: string
   onCopy: () => void
-  onClose: () => void 
+  onClose: () => void
 }) {
   const dropdownRef = useRef<HTMLDivElement>(null)
 
@@ -96,23 +97,22 @@ function VersionDropdown({
     return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [onClose])
 
-  // Generate download URL based on platform
   function getDownloadUrl(ver: string, plat: string) {
-    if (plat === "Windows") {
-      return `https://setup.rbxcdn.com/${ver}-RobloxApp.zip`
-    } else if (plat === "Mac") {
-      return `https://setup.rbxcdn.com/mac/${ver}-RobloxPlayer.zip`
-    }
+    if (plat === "Windows") return `https://setup.rbxcdn.com/${ver}-RobloxApp.zip`
+    if (plat === "Mac") return `https://setup.rbxcdn.com/mac/${ver}-RobloxPlayer.zip`
     return null
   }
 
   const downloadUrl = getDownloadUrl(version, platform)
 
   return (
-    <div 
+    <div
       ref={dropdownRef}
-      className="absolute top-full left-0 mt-1 z-[100] min-w-[160px] rounded-xl border border-[rgba(77,184,232,0.25)] bg-[#1a3a47] shadow-[0_16px_48px_rgba(0,0,0,0.8),0_0_0_1px_rgba(77,184,232,0.1)] overflow-hidden"
-      style={{ 
+      className="absolute top-full right-0 mt-1 z-[200] min-w-[160px] rounded-xl overflow-hidden"
+      style={{
+        background: "#0d1f30",
+        border: "1px solid rgba(77,184,232,0.30)",
+        boxShadow: "0 16px 48px rgba(0,0,0,0.9), 0 0 0 1px rgba(77,184,232,0.10)",
         animation: "fadeInScale 0.15s ease-out",
       }}
     >
@@ -120,10 +120,11 @@ function VersionDropdown({
         <a
           href={downloadUrl}
           download
-          className="flex items-center gap-3 px-4 py-3 text-sm font-[700] text-[#4DB8E8] bg-[rgba(77,184,232,0.08)] hover:bg-[rgba(77,184,232,0.15)] transition-colors cursor-pointer block w-full no-underline"
-          onClick={(e) => {
-            e.stopPropagation()
-          }}
+          className="flex items-center gap-3 px-4 py-3 text-sm font-[700] text-[#4DB8E8] no-underline transition-colors block w-full"
+          style={{ background: "rgba(77,184,232,0.06)" }}
+          onMouseEnter={e => (e.currentTarget.style.background = "rgba(77,184,232,0.14)")}
+          onMouseLeave={e => (e.currentTarget.style.background = "rgba(77,184,232,0.06)")}
+          onClick={e => e.stopPropagation()}
         >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path d="M7 1v9m0 0l-3-3m3 3l3-3M1 13h12" strokeLinecap="round" strokeLinejoin="round" />
@@ -133,13 +134,19 @@ function VersionDropdown({
       )}
       <button
         type="button"
-        onClick={(e) => {
+        onClick={e => {
           e.preventDefault()
           e.stopPropagation()
           onCopy()
           onClose()
         }}
-        className="flex items-center gap-3 px-4 py-3 text-sm font-[700] text-[#4DB8E8] bg-[rgba(77,184,232,0.08)] hover:bg-[rgba(77,184,232,0.15)] transition-colors cursor-pointer w-full text-left border-t border-[rgba(77,184,232,0.15)]"
+        className="flex items-center gap-3 px-4 py-3 text-sm font-[700] text-[#4DB8E8] cursor-pointer w-full text-left transition-colors"
+        style={{
+          background: "rgba(77,184,232,0.06)",
+          borderTop: "1px solid rgba(77,184,232,0.15)",
+        }}
+        onMouseEnter={e => (e.currentTarget.style.background = "rgba(77,184,232,0.14)")}
+        onMouseLeave={e => (e.currentTarget.style.background = "rgba(77,184,232,0.06)")}
       >
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5">
           <rect x="4.5" y="4.5" width="8" height="8" rx="1.5" />
@@ -159,21 +166,21 @@ export function VersionsCard({ versions }: { versions: VersionData }) {
   const past = versions.past || {}
 
   const rows = [
-    { 
-      name: "Windows", 
-      value: current.Windows, 
+    {
+      name: "Windows",
+      value: current.Windows,
       date: current.WindowsDate,
       pastValue: past.Windows,
       pastDate: past.WindowsDate,
     },
-    { 
-      name: "Mac", 
-      value: current.Mac, 
+    {
+      name: "Mac",
+      value: current.Mac,
       date: current.MacDate,
       pastValue: past.Mac,
       pastDate: past.MacDate,
     },
-  ].filter((r) => r.value)
+  ].filter(r => r.value)
 
   function copyText(text: string) {
     navigator.clipboard.writeText(text).then(() => {
@@ -183,11 +190,8 @@ export function VersionsCard({ versions }: { versions: VersionData }) {
   }
 
   function getDownloadUrl(ver: string, plat: string) {
-    if (plat === "Windows") {
-      return `https://setup.rbxcdn.com/${ver}-RobloxApp.zip`
-    } else if (plat === "Mac") {
-      return `https://setup.rbxcdn.com/mac/${ver}-RobloxPlayer.zip`
-    }
+    if (plat === "Windows") return `https://setup.rbxcdn.com/${ver}-RobloxApp.zip`
+    if (plat === "Mac") return `https://setup.rbxcdn.com/mac/${ver}-RobloxPlayer.zip`
     return null
   }
 
@@ -212,7 +216,7 @@ export function VersionsCard({ versions }: { versions: VersionData }) {
           </div>
 
           {/* Version Rows */}
-          <div className="flex flex-col gap-0 divide-y divide-[rgba(77,184,232,0.08)]">
+          <div className="flex flex-col divide-y divide-[rgba(77,184,232,0.08)]">
             {rows.map((row, i) => (
               <div
                 key={row.name}
@@ -247,13 +251,17 @@ export function VersionsCard({ versions }: { versions: VersionData }) {
                   </div>
 
                   {/* Version chip with dropdown */}
-                  <div className="relative">
+                  <div className="relative flex-shrink-0">
                     <button
                       type="button"
                       onClick={() => setOpenDropdown(openDropdown === row.name ? null : row.name)}
-                      className="flex items-center gap-2 px-3 py-2 rounded-lg border border-[rgba(77,184,232,0.18)] bg-[rgba(77,184,232,0.08)] text-[12px] font-[800] text-[rgba(77,184,232,0.90)] cursor-pointer select-none transition-all duration-150 hover:border-[rgba(77,184,232,0.35)] hover:bg-[rgba(77,184,232,0.12)]"
+                      className="flex items-center gap-2 px-3 py-2 rounded-lg text-[12px] font-[800] text-[rgba(77,184,232,0.90)] cursor-pointer select-none transition-all duration-150 hover:border-[rgba(77,184,232,0.35)]"
+                      style={{
+                        border: "1px solid rgba(77,184,232,0.18)",
+                        background: "rgba(77,184,232,0.08)",
+                      }}
                     >
-                      <span className="truncate max-w-[140px]">{row.value}</span>
+                      <span className="truncate max-w-[120px]">{row.value}</span>
                       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" className="flex-shrink-0 opacity-60">
                         <rect x="4" y="4" width="7" height="7" rx="1.5" />
                         <path d="M8 4V2.5A1.5 1.5 0 006.5 1H2.5A1.5 1.5 0 001 2.5v4A1.5 1.5 0 002.5 8H4" />
@@ -278,7 +286,7 @@ export function VersionsCard({ versions }: { versions: VersionData }) {
 
       {/* Toast */}
       {toast && (
-        <div className="fixed left-1/2 -translate-x-1/2 bottom-5 px-4 py-2.5 rounded-full border border-[rgba(77,184,232,0.25)] bg-[rgba(26,58,71,0.95)] shadow-[0_16px_48px_rgba(0,0,0,0.6)] text-[#4DB8E8] font-[900] text-sm z-[9999] animate-[fade-in-up_0.2s_ease-out]">
+        <div className="fixed left-1/2 -translate-x-1/2 bottom-5 px-4 py-2.5 rounded-full border border-[rgba(77,184,232,0.25)] bg-[rgba(13,31,48,0.98)] shadow-[0_16px_48px_rgba(0,0,0,0.6)] text-[#4DB8E8] font-[900] text-sm z-[9999] animate-[fade-in-up_0.2s_ease-out]">
           {toast}
         </div>
       )}
