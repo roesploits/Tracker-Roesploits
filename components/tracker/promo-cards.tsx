@@ -1,15 +1,16 @@
 "use client"
 
+import Image from "next/image"
+
 function RoesploitsIcon() {
   return (
     <div
-      className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 border border-[rgba(77,184,232,0.30)]"
+      className="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0 border border-[rgba(77,184,232,0.30)]"
       style={{
-        background: "linear-gradient(135deg, rgba(77,184,232,0.22), rgba(77,184,232,0.12))",
         boxShadow: "0 0 20px rgba(77,184,232,0.15)",
       }}
     >
-      <span className="text-lg font-[950] text-[rgba(77,184,232,0.95)]">R</span>
+      <Image src="/logo.png" alt="Roesploits" width={40} height={40} className="object-cover w-full h-full" />
     </div>
   )
 }
@@ -47,7 +48,7 @@ export function PromoCards() {
             Visit the main platform for scripts, news, and community updates.
           </p>
           <a
-            href="https://status.roesploits.com/"
+            href="https://roesploits.com"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-white font-[900] text-sm no-underline select-none relative overflow-hidden transition-all duration-150 ease-out hover:brightness-110 hover:-translate-y-px"
@@ -78,7 +79,7 @@ export function PromoCards() {
             Join our community for support, updates, and discussions.
           </p>
           <a
-            href="https://discord.gg/"
+            href="https://discord.gg/v9tv7SNCwp"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full font-[900] text-sm text-[#4DB8E8] no-underline select-none border border-[rgba(77,184,232,0.15)] bg-[rgba(77,184,232,0.06)] transition-all duration-150 ease-out hover:border-[rgba(77,184,232,0.30)] hover:-translate-y-px hover:shadow-[0_0_0_4px_rgba(77,184,232,0.08)]"
