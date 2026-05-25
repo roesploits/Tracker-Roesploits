@@ -1,7 +1,8 @@
 "use client"
 
 import React from "react"
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
+import { createPortal } from "react-dom"
 
 interface VersionData {
   current: {
@@ -61,33 +62,58 @@ function PlatformIcon({ name }: { name: string }) {
       ),
     },
   }
-
   const i = iconMap[name] || { bg: "rgba(255,255,255,0.06)", border: "rgba(255,255,255,0.10)", icon: null }
   return (
-    <div
-      className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-      style={{ background: i.bg, border: `1px solid ${i.border}` }}
-    >
+    <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
+      style={{ background: i.bg, border: `1px solid ${i.border}` }}>
       {i.icon}
     </div>
   )
 }
 
-function VersionDropdown({
-  version, platform, onCopy, onClose
+// Portal dropdown — renders at document.body level so no parent overflow:hidden can clip it
+function PortalDropdown({
+  version, platform, anchorRef, onCopy, onClose
 }: {
-  version: string; platform: string; onCopy: () => void; onClose: () => void
+  version: string
+  platform: string
+  anchorRef: React.RefObject<HTMLButtonElement>
+  onCopy: () => void
+  onClose: () => void
 }) {
+  const [pos, setPos] = useState({ top: 0, right: 0 })
   const dropdownRef = useRef<HTMLDivElement>(null)
 
+  // Calculate position from the anchor button
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+    if (anchorRef.current) {
+      const rect = anchorRef.current.getBoundingClientRect()
+      setPos({
+        top: rect.bottom + window.scrollY + 4,
+        right: window.innerWidth - rect.right,
+      })
+    }
+  }, [anchorRef])
+
+  // Close on outside click
+  useEffect(() => {
+    function handle(e: MouseEvent) {
+      if (
+        dropdownRef.current && !dropdownRef.current.contains(e.target as Node) &&
+        anchorRef.current && !anchorRef.current.contains(e.target as Node)
+      ) {
         onClose()
       }
     }
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => document.removeEventListener("mousedown", handleClickOutside)
+    document.addEventListener("mousedown", handle)
+    return () => document.removeEventListener("mousedown", handle)
+  }, [onClose, anchorRef])
+
+  // Close on scroll
+  useEffect(() => {
+    const handle = () => onClose()
+    window.addEventListener("scroll", handle, true)
+    return () => window.removeEventListener("scroll", handle, true)
   }, [onClose])
 
   function getDownloadUrl(ver: string, plat: string) {
@@ -98,21 +124,28 @@ function VersionDropdown({
 
   const downloadUrl = getDownloadUrl(version, platform)
 
-  return (
+  const dropdown = (
     <div
       ref={dropdownRef}
-      className="absolute top-full right-0 mt-1 z-[500] min-w-[160px] rounded-xl overflow-hidden"
       style={{
+        position: "absolute",
+        top: pos.top,
+        right: pos.right,
+        zIndex: 99999,
+        minWidth: 160,
+        borderRadius: 12,
+        overflow: "hidden",
         background: "#0a1929",
         border: "1px solid rgba(77,184,232,0.35)",
-        boxShadow: "0 20px 60px rgba(0,0,0,0.95), 0 0 0 1px rgba(77,184,232,0.08)",
+        boxShadow: "0 20px 60px rgba(0,0,0,0.95)",
+        animation: "fadeInScale 0.15s ease-out",
       }}
     >
       {downloadUrl && (
         <a
           href={downloadUrl}
           download
-          className="flex items-center gap-3 px-4 py-3 text-sm font-[700] text-[#4DB8E8] no-underline w-full block transition-colors"
+          className="flex items-center gap-3 px-4 py-3 text-sm font-[700] text-[#4DB8E8] no-underline w-full block"
           style={{ background: "rgba(77,184,232,0.05)" }}
           onMouseEnter={e => (e.currentTarget.style.background = "rgba(77,184,232,0.12)")}
           onMouseLeave={e => (e.currentTarget.style.background = "rgba(77,184,232,0.05)")}
@@ -127,7 +160,7 @@ function VersionDropdown({
       <button
         type="button"
         onClick={e => { e.preventDefault(); e.stopPropagation(); onCopy(); onClose() }}
-        className="flex items-center gap-3 px-4 py-3 text-sm font-[700] text-[#4DB8E8] cursor-pointer w-full text-left transition-colors"
+        className="flex items-center gap-3 px-4 py-3 text-sm font-[700] text-[#4DB8E8] cursor-pointer w-full text-left"
         style={{ background: "rgba(77,184,232,0.05)", borderTop: "1px solid rgba(77,184,232,0.12)" }}
         onMouseEnter={e => (e.currentTarget.style.background = "rgba(77,184,232,0.12)")}
         onMouseLeave={e => (e.currentTarget.style.background = "rgba(77,184,232,0.05)")}
@@ -140,11 +173,16 @@ function VersionDropdown({
       </button>
     </div>
   )
+
+  // Render outside of any parent — directly into document.body
+  if (typeof document === "undefined") return null
+  return createPortal(dropdown, document.body)
 }
 
 export function VersionsCard({ versions }: { versions: VersionData }) {
   const [toast, setToast] = useState("")
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+  const btnRefs = useRef<Record<string, React.RefObject<HTMLButtonElement>>>({})
 
   const current = versions.current || {}
   const past = versions.past || {}
@@ -153,6 +191,13 @@ export function VersionsCard({ versions }: { versions: VersionData }) {
     { name: "Windows", value: current.Windows, date: current.WindowsDate, pastValue: past.Windows },
     { name: "Mac",     value: current.Mac,     date: current.MacDate,     pastValue: past.Mac },
   ].filter(r => r.value)
+
+  // Create stable refs for each row button
+  rows.forEach(row => {
+    if (!btnRefs.current[row.name]) {
+      btnRefs.current[row.name] = React.createRef<HTMLButtonElement>()
+    }
+  })
 
   function copyText(text: string) {
     navigator.clipboard.writeText(text).then(() => {
@@ -169,8 +214,12 @@ export function VersionsCard({ versions }: { versions: VersionData }) {
 
   return (
     <>
-      <div className="glass-card glass-card-hover versions-card-overflow animate-[fade-in-up_0.6s_ease-out_both]" style={{ animationDelay: "0.4s", overflow: "visible" }}>
-        <div style={{ position: "relative", zIndex: 1, overflow: "visible" }}>
+      <div
+        className="glass-card glass-card-hover animate-[fade-in-up_0.6s_ease-out_both]"
+        style={{ animationDelay: "0.4s" }}
+      >
+        <div className="relative z-[1]">
+          {/* Header */}
           <div className="flex items-center gap-2.5 px-5 pt-4 pb-3 border-b border-[rgba(77,184,232,0.08)]">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(77,184,232,0.8)" strokeWidth="1.5">
               <path d="M4 2L12 2M4 8L12 8M4 14L12 14" strokeLinecap="round" />
@@ -178,18 +227,27 @@ export function VersionsCard({ versions }: { versions: VersionData }) {
               <circle cx="2" cy="8" r="1" fill="rgba(77,184,232,0.7)" stroke="none" />
               <circle cx="2" cy="14" r="1" fill="rgba(77,184,232,0.7)" stroke="none" />
             </svg>
-            <h2 className="m-0 text-xs font-[950] tracking-[1.2px] uppercase text-[rgba(77,184,232,0.75)]">Roblox Versions</h2>
+            <h2 className="m-0 text-xs font-[950] tracking-[1.2px] uppercase text-[rgba(77,184,232,0.75)]">
+              Roblox Versions
+            </h2>
           </div>
 
-          <div className="flex flex-col divide-y divide-[rgba(77,184,232,0.08)]" style={{ overflow: "visible" }}>
+          {/* Rows */}
+          <div className="flex flex-col divide-y divide-[rgba(77,184,232,0.08)]">
             {rows.map((row, i) => (
-              <div key={row.name} className="px-5 py-4" style={{ position: "relative", zIndex: rows.length - i, overflow: "visible" }}>
-                <div className="flex items-center gap-4" style={{ overflow: "visible" }}>
+              <div
+                key={row.name}
+                className="px-5 py-4 animate-[card-enter_0.5s_ease-out_both]"
+                style={{ animationDelay: `${0.5 + i * 0.08}s` }}
+              >
+                <div className="flex items-center gap-4">
                   <PlatformIcon name={row.name} />
                   <div className="flex-1 min-w-0">
                     <span className="font-[950] text-sm text-[#4DB8E8]">{row.name} Version</span>
                     <div className="flex items-center gap-3 mt-1 flex-wrap">
-                      <span className="text-[11px] font-[600] text-[rgba(77,184,232,0.50)]">Last Updated: {row.date}</span>
+                      <span className="text-[11px] font-[600] text-[rgba(77,184,232,0.50)]">
+                        Last Updated: {row.date}
+                      </span>
                       {row.pastValue && (
                         <a
                           href={getDownloadUrl(row.pastValue, row.name) || "#"}
@@ -206,9 +264,10 @@ export function VersionsCard({ versions }: { versions: VersionData }) {
                     </div>
                   </div>
 
-                  {/* Version chip — overflow:visible so dropdown is not clipped */}
-                  <div className="relative flex-shrink-0" style={{ overflow: "visible" }}>
+                  {/* Button — ref passed to portal for positioning */}
+                  <div className="flex-shrink-0">
                     <button
+                      ref={btnRefs.current[row.name] as React.RefObject<HTMLButtonElement>}
                       type="button"
                       onClick={() => setOpenDropdown(openDropdown === row.name ? null : row.name)}
                       className="flex items-center gap-2 px-3 py-2 rounded-lg text-[12px] font-[800] text-[rgba(77,184,232,0.90)] cursor-pointer select-none transition-all duration-150"
@@ -221,10 +280,12 @@ export function VersionsCard({ versions }: { versions: VersionData }) {
                       </svg>
                     </button>
 
-                    {openDropdown === row.name && (
-                      <VersionDropdown
+                    {/* Portal dropdown — renders in document.body, not inside this card */}
+                    {openDropdown === row.name && btnRefs.current[row.name] && (
+                      <PortalDropdown
                         version={row.value!}
                         platform={row.name}
+                        anchorRef={btnRefs.current[row.name] as React.RefObject<HTMLButtonElement>}
                         onCopy={() => copyText(row.value!)}
                         onClose={() => setOpenDropdown(null)}
                       />
