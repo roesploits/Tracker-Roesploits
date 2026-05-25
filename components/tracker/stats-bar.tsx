@@ -35,14 +35,12 @@ export function StatsBar({ tools }: { tools: Tool[] }) {
   const total = tools.length
   const updated = tools.filter((t) => t.updateStatus === true || t.updateStatus === "Updated").length
   const undetected = tools.filter((t) => t.detected === false).length
-  const free = tools.filter((t) => t.free).length
   const coverage = total > 0 ? Math.round((updated / total) * 100) : 0
 
   const stats = [
     { label: "TOTAL TOOLS", value: total, color: "#4DB8E8" },
     { label: "UPDATED", value: updated, color: "#35ffb0" },
     { label: "UNDETECTED", value: undetected, color: "#4DB8E8" },
-    { label: "FREE", value: free, color: "#4DB8E8" },
   ]
 
   return (
