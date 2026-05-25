@@ -188,9 +188,29 @@ function ToolCard({ tool, isExternal, index }: { tool: Tool; isExternal: boolean
         </div>
       )}
 
-      {/* Meta */}
-      <div className="mt-2.5 text-[rgba(77,184,232,0.40)] text-[11px] font-[700]">
-        Last updated: {tool.updatedDate?.replace(" at ", ", ") || "\u2014"}
+      {/* Meta + Buy */}
+      <div className="mt-2.5 flex items-center justify-between gap-3 flex-wrap">
+        <div className="text-[rgba(77,184,232,0.40)] text-[11px] font-[700]">
+          Last updated: {tool.updatedDate?.replace(" at ", ", ") || "\u2014"}
+        </div>
+        <a
+          href="https://roesploits.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-[900] no-underline select-none transition-all duration-150 ease-out hover:brightness-110 hover:-translate-y-px"
+          style={{
+            background: "linear-gradient(135deg, #2f7dff, #4DB8E8)",
+            color: "#fff",
+            boxShadow: "0 4px 16px rgba(77,184,232,0.25)",
+          }}
+        >
+          <svg width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <path d="M1 1h2l1.5 7.5h7L13 4H4" />
+            <circle cx="6" cy="12" r="1" fill="currentColor" stroke="none"/>
+            <circle cx="11" cy="12" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+          Buy
+        </a>
       </div>
     </div>
   )
