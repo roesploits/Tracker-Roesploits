@@ -24,17 +24,13 @@ export function Header({ status }: { status: "ok" | "warn" | "bad" | "loading" |
       style={{ animationDelay: "0.1s" }}
     >
       <div className="flex items-center gap-3.5">
-        {/* Logo image */}
-        <div className="relative w-12 h-12 rounded-2xl overflow-hidden flex-shrink-0 border border-[rgba(77,184,232,0.30)]"
-          style={{
-            boxShadow: "0 0 24px rgba(77,184,232,0.18)",
-          }}
-        >
+        {/* Logo — no border, no background box */}
+        <div className="relative w-12 h-12 flex-shrink-0">
           <Image
             src="/logo.png"
             alt="Roesploits logo"
             fill
-            className="object-cover"
+            className="object-contain"
             priority
           />
         </div>
