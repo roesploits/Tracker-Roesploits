@@ -169,8 +169,8 @@ export function VersionsCard({ versions }: { versions: VersionData }) {
 
   return (
     <>
-      <div className="glass-card glass-card-hover animate-[fade-in-up_0.6s_ease-out_both]" style={{ animationDelay: "0.4s", overflow: "visible" }}>
-        <div className="relative z-[1]" style={{ overflow: "visible" }}>
+      <div className="glass-card-hover animate-[fade-in-up_0.6s_ease-out_both]" style={{ animationDelay: "0.4s", background: "linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025))", backdropFilter: "blur(16px)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "20px", boxShadow: "0 24px 80px rgba(0,0,0,0.5)", position: "relative", overflow: "visible" }}>
+        <div style={{ position: "relative", zIndex: 1, overflow: "visible" }}>
           <div className="flex items-center gap-2.5 px-5 pt-4 pb-3 border-b border-[rgba(77,184,232,0.08)]">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(77,184,232,0.8)" strokeWidth="1.5">
               <path d="M4 2L12 2M4 8L12 8M4 14L12 14" strokeLinecap="round" />
@@ -181,10 +181,10 @@ export function VersionsCard({ versions }: { versions: VersionData }) {
             <h2 className="m-0 text-xs font-[950] tracking-[1.2px] uppercase text-[rgba(77,184,232,0.75)]">Roblox Versions</h2>
           </div>
 
-          <div className="flex flex-col divide-y divide-[rgba(77,184,232,0.08)]">
+          <div className="flex flex-col divide-y divide-[rgba(77,184,232,0.08)]" style={{ overflow: "visible" }}>
             {rows.map((row, i) => (
-              <div key={row.name} className="px-5 py-4 overflow-visible" style={{ position: "relative", zIndex: rows.length - i }}>
-                <div className="flex items-center gap-4">
+              <div key={row.name} className="px-5 py-4" style={{ position: "relative", zIndex: rows.length - i, overflow: "visible" }}>
+                <div className="flex items-center gap-4" style={{ overflow: "visible" }}>
                   <PlatformIcon name={row.name} />
                   <div className="flex-1 min-w-0">
                     <span className="font-[950] text-sm text-[#4DB8E8]">{row.name} Version</span>
