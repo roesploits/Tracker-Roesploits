@@ -116,7 +116,6 @@ function ProgressBar({ value, color }: { value: number; color: string }) {
 
 function ToolCard({ tool, isExternal, index }: { tool: Tool; isExternal: boolean; index: number }) {
   const updated = isUpdated(tool.updateStatus)
-  const msg = toolMessage(tool)
 
   return (
     <div
@@ -182,11 +181,6 @@ function ToolCard({ tool, isExternal, index }: { tool: Tool; isExternal: boolean
       )}
 
       {/* Message */}
-      {msg && (
-        <div className={`mt-3 px-3 py-2.5 rounded-xl text-[12px] font-[800] border leading-relaxed ${msg.cls}`}>
-          {msg.text}
-        </div>
-      )}
 
       {/* Meta + Buy */}
       <div className="mt-2.5 flex items-center justify-between gap-3 flex-wrap">
