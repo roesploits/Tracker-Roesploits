@@ -4,13 +4,8 @@ import Image from "next/image"
 
 function RoesploitsIcon() {
   return (
-    <div
-      className="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0 border border-[rgba(77,184,232,0.30)]"
-      style={{
-        boxShadow: "0 0 20px rgba(77,184,232,0.15)",
-      }}
-    >
-      <Image src="/logo.png" alt="Roesploits" width={40} height={40} className="object-cover w-full h-full" />
+    <div className="w-10 h-10 flex-shrink-0">
+      <Image src="/logo.png" alt="Roesploits" width={40} height={40} className="object-contain w-full h-full" />
     </div>
   )
 }
@@ -37,7 +32,6 @@ export function PromoCards() {
       className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-[fade-in-up_0.6s_ease-out_both]"
       style={{ animationDelay: "0.3s" }}
     >
-      {/* Roesploits */}
       <div className="glass-card glass-card-hover group">
         <div className="relative z-[1] p-5">
           <div className="flex items-center gap-3 mb-2">
@@ -61,14 +55,10 @@ export function PromoCards() {
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               <path d="M5 2h7v7M12 2L2 12" />
             </svg>
-            <div className="absolute inset-0 animate-[shimmer_2.5s_ease-in-out_infinite]"
-              style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent)" }}
-            />
           </a>
         </div>
       </div>
 
-      {/* Discord */}
       <div className="glass-card glass-card-hover group">
         <div className="relative z-[1] p-5">
           <div className="flex items-center gap-3 mb-2">
@@ -82,9 +72,9 @@ export function PromoCards() {
             href="https://discord.gg/v9tv7SNCwp"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full font-[900] text-sm text-[#4DB8E8] no-underline select-none border border-[rgba(77,184,232,0.15)] bg-[rgba(77,184,232,0.06)] transition-all duration-150 ease-out hover:border-[rgba(77,184,232,0.30)] hover:-translate-y-px hover:shadow-[0_0_0_4px_rgba(77,184,232,0.08)]"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full font-[900] text-sm text-[#4DB8E8] no-underline select-none border border-[rgba(77,184,232,0.15)] bg-[rgba(77,184,232,0.06)] transition-all duration-150 ease-out hover:border-[rgba(77,184,232,0.30)] hover:-translate-y-px"
           >
-            {"Join Discord"}
+            Join Discord
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               <path d="M1 7h12M8 2l5 5-5 5" />
             </svg>
