@@ -9,6 +9,10 @@ const inter = Inter({ subsets: ["latin", "cyrillic"], variable: "--font-inter" }
 export const metadata: Metadata = {
   title: "Roesploits Tracker",
   description: "Roblox exploit status tracker - versions, tools, detection status",
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
 }
 
 export default function RootLayout({
